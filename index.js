@@ -1,6 +1,8 @@
 const inquirer = require ("inquirer");
 const mysql = require ("mysql2");
 require('dotenv').config();
+// const cTable = require("console.table");
+require("console.table");
 
 const db = mysql.createConnection (
     {
@@ -29,7 +31,7 @@ inquirer.prompt([
             "Add a role.",
             "Add an employee.",
             "Update an employee role.",
-            "Quit"
+            "Quit."
         ],
     }
   ])
@@ -64,8 +66,7 @@ inquirer.prompt([
         updateEmployee()
     break;
     
-    case "Update an employee role.":
-        updateEmployee()
+    case "Quit.":
     break;
 }
 });
@@ -76,7 +77,7 @@ const viewDep = () => {
     db.promise()
     .query({sql, rowsAsArray: true})
     .then (([rows]) => {
-        console.table ("\n" + rows + "\n");
+        console.table ("\n",rows,"\n");
         mainPage();
     });
 };
@@ -86,7 +87,7 @@ const viewRoles = () => {
     db.promise()
     .query({sql, rowsAsArray: true})
     .then (([rows]) => {
-        console.table ("\n" + rows + "\n");
+        console.table ("\n",rows,"\n");
         mainPage();
     });
 };
@@ -96,7 +97,7 @@ const viewEmployees = () => {
     db.promise()
     .query({sql, rowsAsArray: true})
     .then (([rows]) => {
-        console.table ("\n" + rows + "\n");
+        console.table ("\n",rows,"\n");
         mainPage();
     });
 };
